@@ -34,7 +34,7 @@ export default async function Home() {
       country: "Sweden",
     },
   };
-  const latest = testData; // data.length > 0 ? data[0] : null;
+  const latest = data.length > 0 ? data[0] : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-rally/5">
@@ -57,7 +57,7 @@ export default async function Home() {
             </div>
             <div className="bg-white p-8 rounded-lg shadow-xl text-center mx-8">
               <h2 className="text-5xl font-bold text-rally animate-pulse">
-                Snart drar supen igång...
+                Bastun värms upp...
               </h2>
             </div>
             <div className="hidden md:block">
