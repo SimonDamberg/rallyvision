@@ -64,23 +64,25 @@ export default function NowPlaying({ latest }: NowPlayingProps) {
 
   return (
     <div
-      className={`w-full p-4 shadow-lg transition-all ${
+      className={`w-full p-8 shadow-xl transition-all ${
         isSweden(latest.performance.country)
           ? "bg-[#006AA7] text-[#FECC02]"
           : "bg-rally text-white"
       }`}
     >
       <div
-        className={`max-w-4xl mx-auto transition-all duration-500 ${
+        className={`max-w-6xl mx-auto transition-all duration-500 ${
           isNew ? "scale-105 translate-y-1" : ""
         }`}
       >
-        <div className="text-lg font-bold tracking-widest opacity-90">LÅT</div>
+        <div className="text-2xl font-bold tracking-widest opacity-90">LÅT</div>
         <div
-          className={`text-3xl font-black mt-2 ${isNew ? "animate-pulse" : ""}`}
+          className={`text-6xl font-black mt-4 ${isNew ? "animate-pulse" : ""}`}
         >
-          {getCountryFlag(latest.performance.country)} {latest.performance.song}{" "}
-          - {latest.performance.artist}
+          <span className="text-7xl">
+            {getCountryFlag(latest.performance.country)}
+          </span>{" "}
+          {latest.performance.song} - {latest.performance.artist}
         </div>
       </div>
     </div>

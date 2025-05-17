@@ -1,4 +1,8 @@
 import { DataItem } from "./types";
+import AutoRefresh from "./components/AutoRefresh";
+import NowPlaying from "./components/NowPlaying";
+import LatestEvent from "./components/LatestEvent";
+import Image from "next/image";
 
 async function getData(): Promise<DataItem[]> {
   const res = await fetch("https://eurovisiondrinking.com/2025/drinking.json", {
@@ -12,29 +16,25 @@ async function getData(): Promise<DataItem[]> {
   return res.json();
 }
 
-import AutoRefresh from "./components/AutoRefresh";
-import NowPlaying from "./components/NowPlaying";
-import LatestEvent from "./components/LatestEvent";
-
 export default async function Home() {
   const data = await getData();
 
   const testData: DataItem = {
-    id: 124,
+    id: 127,
     occurred: "2024-05-11T22:14:18+00:00",
     type: "smoke-machine",
     name: "Smoke machine",
     description:
       '"We all came out to Montreux..." Smoke on the water, er, stage.',
     penalty: "one-finger",
-    performance_id: 382,
+    performance_id: 383,
     performance: {
       song: "BARA BADA BASTU",
       artist: "KAJ",
       country: "Sweden",
     },
   };
-  const latest = data.length > 0 ? data[0] : null;
+  const latest = testData; // data.length > 0 ? data[0] : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-rally/5">
@@ -45,10 +45,24 @@ export default async function Home() {
         {latest ? (
           <LatestEvent event={latest} />
         ) : (
-          <div className="bg-white p-8 rounded-lg shadow-xl text-center">
-            <h2 className="text-3xl font-bold text-rally animate-pulse">
-              Snart drar supen igång...
-            </h2>
+          <div className="w-full flex items-center justify-center">
+            <div className="hidden md:block">
+              <Image
+                src="/anna.png"
+                alt="Anna"
+                width={300}
+                height={300}
+                className="transform -scale-x-100"
+              />
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-xl text-center mx-8">
+              <h2 className="text-5xl font-bold text-rally animate-pulse">
+                Snart drar supen igång...
+              </h2>
+            </div>
+            <div className="hidden md:block">
+              <Image src="/anna.png" alt="Anna" width={300} height={300} />
+            </div>
           </div>
         )}
       </div>
